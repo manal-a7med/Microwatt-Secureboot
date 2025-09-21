@@ -55,13 +55,11 @@ By implementing Secure Boot on MicroWatt, we aim to prove that open hardware can
 
 
 ## Repository Structure
-Microwatt-Secureboot/
-├── src/ # RTL source files (boot ROM, verification, FAIL peripheral)
-├── tb/ # Testbenches (valid/invalid firmware verification)
-├── docs/ # Design documentation, diagrams, verification reports
-├── docker/ # Reproducible build & simulation environment
-├── media/ # Screenshots and demo video
-└── README.md # Complete project proposal
+- `src/` – RTL modules (boot ROM, verification unit, FAIL peripheral)  
+- `tb/` – Testbenches (valid/invalid firmware flows)  
+- `docker/` – Dockerfile + build scripts  
+- `docs/` – Architecture, verification, results  
+- `media/` – Screenshots and demo video  
 
 ## Judging Criteria Alignment
 - **Design Technical Merit:** Secure Boot + FAIL peripheral directly extends MicroWatt functionality.  
