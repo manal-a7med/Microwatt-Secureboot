@@ -1,7 +1,9 @@
 *This project is built on top of the ChipFoundry OpenFrame user project template. Template documentation has been removed to highlight the custom project description.*
 
 *Note: This repo was initialized from the ChipFoundry OpenFrame template. 
-Template example code remains and will be replaced with Secure Boot design files during implementation.*
+Template example code remains and will be replaced with Secure Boot design files during implementation.
+Physical design artifacts (gds/, lef/, def/, etc.) are provided by the template and will be updated during implementation and hardening.*
+
 
 
 
