@@ -34,7 +34,7 @@ By implementing Secure Boot on MicroWatt, we aim to prove that open hardware can
 - **RTL Modules:**  
   - Boot ROM (firmware loader)  
   - Verification Unit (CRC32/SHA)  
-  - FAIL Peripheral (LED/GPIO/UART signaling)  
+  - FAIL Peripheral (LED/GPIO/UART signaling)[If time permits]  
 
 - **Simulation Testbenches:**  
   - Valid firmware path (system boots normally)  
