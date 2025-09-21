@@ -35,7 +35,7 @@ By implementing Secure Boot on MicroWatt, we aim to prove that open hardware can
 ## Planned Deliverables
 - **RTL Modules:**  
   - Boot ROM (firmware loader)  
-  - Verification Unit (CRC32/SHA)  
+  - Verification Unit (CRC32/SHA)(SHA-256 is optional) 
   - FAIL Peripheral (LED/GPIO/UART signaling)[If time permits]  
 
 - **Simulation Testbenches:**  
