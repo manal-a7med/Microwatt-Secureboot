@@ -15,3 +15,69 @@ runs/
 /logs
 lvs_results/
 __pycache__/
+
+# ------------------------------------------------------------------
+# Microwatt-Secureboot Hackathon Project - .gitignore
+# Keeps repo clean from auto-generated files
+# ------------------------------------------------------------------
+
+# --- OpenLane / OpenROAD generated artifacts ---
+*.lef
+*.def
+*.gds
+*.mag
+*.maglef
+*.spef
+*.sdc
+*.sdf
+*.nl.v
+verilog/gl/*
+signoff/*
+openlane/*/runs/*
+simv
+
+# --- Logs and reports ---
+*.log
+*.rpt
+*.csv
+*.out
+*.err
+*.vcd
+*.fst
+
+# --- Temporary & build files ---
+*.o
+*.swp
+*.bak
+*.tmp
+*.tar.gz
+__pycache__/
+*.pyc
+*.pyo
+
+# --- Local environment / virtualenv ---
+.venv/
+venv/
+.env
+*.egg-info/
+pip-wheel-metadata/
+
+# --- Tools / PDK cache ---
+dependencies/pdks/*
+dependencies/openlane_src/*
+
+# --- Allow important sources & docs back in ---
+!src/**
+!tb/**
+!verilog/rtl/**
+!verilog/dv/**
+!README.md
+!docs/**
+!.gitkeep
+
+# ------------------------------------------------------------------
+# NOTE:
+# - During development, only RTL, TB, docs, and scripts will be tracked.
+# - Before tape-out submission, REMOVE some entries (lef/def/gds/sdc/spef)
+#   so final GDS + views are pushed once in a tagged release.
+# ------------------------------------------------------------------

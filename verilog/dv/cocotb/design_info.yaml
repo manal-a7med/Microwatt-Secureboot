@@ -1,0 +1,9 @@
+CARAVEL_ROOT: /home/mana/Microwatt-Hackathon/Microwatt-Secureboot/caravel
+MCW_ROOT: /home/mana/Microwatt-Hackathon/Microwatt-Secureboot/mgmt_core_wrapper
+PDK: sky130B
+PDK_ROOT: /home/mana/Microwatt-Hackathon/Microwatt-Secureboot/dependencies/pdks
+USER_PROJECT_ROOT: /home/mana/Microwatt-Hackathon/Microwatt-Secureboot
+caravan: false
+clk: 25
+emailto:
+- null
