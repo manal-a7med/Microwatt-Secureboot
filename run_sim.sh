@@ -1,5 +1,4 @@
 #!/bin/bash
-iverilog -o simv src/*.v tb/tb_top_secureboot.v
+iverilog -o simv tb/tb_top_secureboot.v src/*.v
 vvp simv
-gtkwave wave.vcd &
- 
+gtkwave dump.vcd &

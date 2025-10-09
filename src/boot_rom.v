@@ -1,20 +1,14 @@
-module boot_rom #(
-    parameter ADDR_WIDTH = 8,
-    parameter DATA_WIDTH = 32
-) (
-    input  wire                  clk,
-    input  wire [ADDR_WIDTH-1:0] addr,
-    output reg  [DATA_WIDTH-1:0] data
+module boot_rom (
+    input  wire [7:0] addr,
+    output reg  [31:0] data
 );
-
-    reg [DATA_WIDTH-1:0] rom [0:(1<<ADDR_WIDTH)-1];
+    reg [31:0] mem [0:255];
 
     initial begin
-        $readmemh("src/firmware.hex", rom);
+        $readmemh("src/firmware.hex", mem);
     end
 
-    always @(posedge clk) begin
-        data <= rom[addr];
+    always @(*) begin
+        data = mem[addr];
     end
-
 endmodule

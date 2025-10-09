@@ -1,24 +1,58 @@
 `timescale 1ns/1ps
+
 module tb_top_secureboot;
+    reg clk;
+    reg reset_n;
+    wire boot_ok, boot_fail;
 
-    reg clk = 0;
-    reg rst = 1;
-    wire [7:0] gpio;
-
+    // DUT
     top_secureboot dut (
         .clk(clk),
-        .rst(rst),
-        .gpio(gpio)
+        .reset_n(reset_n),
+        .boot_ok(boot_ok),
+        .boot_fail(boot_fail)
     );
 
-    always #5 clk = ~clk; // 100 MHz
+    // Clock generation
+    always #5 clk = ~clk;
+
+    task run_test(input [255*8:1] firmware_file, input expect_pass);
+        begin
+            $display("=========================================");
+            $display(" Running test with %s", firmware_file);
+            $display("=========================================");
+
+            // Load firmware
+            $readmemh(firmware_file, dut.rom_inst.mem);
+
+            // Reset cycle
+            reset_n = 0; clk = 0;
+            #20 reset_n = 1;
+
+            // Run simulation
+            #300;
+
+            if (expect_pass && boot_ok)
+                $display("✅ PASS: Boot Successful as expected.");
+            else if (!expect_pass && boot_fail)
+                $display("✅ PASS: Boot Failed as expected.");
+            else
+                $display("❌ FAIL: Unexpected result!");
+
+            #20;
+        end
+    endtask
 
     initial begin
-        $dumpfile("wave.vcd");
+        $dumpfile("dump.vcd");
         $dumpvars(0, tb_top_secureboot);
 
-        #20 rst = 0;       // release reset
-        #200 $finish;
-    end
+        // Test with valid firmware
+        run_test("src/firmware_valid.hex", 1);
 
+        // Test with tampered firmware
+        run_test("src/firmware_tampered.hex", 0);
+
+        $finish;
+    end
 endmodule
