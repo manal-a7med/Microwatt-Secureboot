@@ -48,7 +48,7 @@ module tb_top_secureboot;
         $dumpvars(0, tb_top_secureboot);
 
         // Test with valid firmware
-        run_test("src/firmware_valid.hex", 1);
+        run_test("src/firmware.hex", 1);
 
         // Test with tampered firmware
         run_test("src/firmware_tampered.hex", 0);

@@ -47,19 +47,23 @@ module top_secureboot (
 
     // SRAM instance (1RW + 1R)
     sky130_sram_2kbyte_1rw1r_32x512_8 u_sram (
-    .clk0(clk),
-    .csb0(~cs),
-    .web0(~we),
-    .addr0(addr),
-    .din0(din),
-    .dout0(dout),
-    .vccd1(VPWR),
-    .vssd1(VGND),
-    .clk1(clk),
-    .csb1(1'b1),    // disable second port
-    .addr1(9'b0),
-    .dout1()        // unconnected
-);
+        // Port 0 : Read/Write
+        .clk0  (clk),
+        .csb0  (~sram_cs),   // active-low
+        .web0  (~sram_we),   // active-low
+        .addr0 (sram_addr),
+        .din0  (sram_din),
+        .dout0 (sram_dout),
 
+        // Port 1 : Unused read-only port (tie off)
+        .clk1  (1'b0),
+        .csb1  (1'b1),
+        .addr1 (9'd0),
+        .dout1 (),
+
+        // Power connections
+        .vccd1 (VPWR),
+        .vssd1 (VGND)
+    );
 
 endmodule

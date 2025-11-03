@@ -55,3 +55,16 @@ set ::env(SYNTH_USE_PG_PINS_DEFINES) "USE_POWER_PINS"
 
 # Pin placement template
 set ::env(FP_DEF_TEMPLATE) $::env(DESIGN_DIR)/fixed_dont_change/openframe_project_wrapper.def
+
+# --- Low-memory Magic / signoff tweaks (add these for large designs) ---
+set ::env(MAGIC_DRC_USE_GDS) 1
+set ::env(MAGIC_EXT_USE_GDS) 1
+set ::env(MAGIC_DISABLE_HIER_GDS) 1
+
+# Limit Magic threads to avoid large memory spikes (optional)
+set ::env(MAGIC_THREADS) 1
+
+set ::env(MACRO_PLACEMENT_CFG) "macro.cfg"
+set ::env(EXTRA_LEFS) "$PDK_ROOT/sky130A/libs.ref/sky130_sram_2kbyte_1rw1r_32x512_8/lef/sky130_sram_2kbyte_1rw1r_32x512_8.lef"
+set ::env(EXTRA_GDS_FILES) "$PDK_ROOT/sky130A/libs.ref/sky130_sram_2kbyte_1rw1r_32x512_8/gds/sky130_sram_2kbyte_1rw1r_32x512_8.gds"
+set ::env(FP_SRAM_MACRO_PLACEMENT) "fixed"
