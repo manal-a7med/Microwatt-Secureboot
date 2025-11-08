@@ -5,8 +5,7 @@
     "dir::../../verilog/rtl/top_secureboot.v",
     "dir::../../verilog/rtl/verif_unit.v",
     "dir::../../verilog/rtl/fail_peripheral.v",
-    "dir::../../verilog/rtl/boot_rom.v",
-    "dir::../../verilog/rtl/sky130_sram_2kbyte_1rw1r_32x512_8.v"
+    "dir::../../verilog/rtl/boot_rom.v"
 
   ],
   "CLOCK_PORT": "clk",
@@ -14,8 +13,8 @@
   "FP_PDN_MULTILAYER": true,
 
 
-  "VDD_NETS": ["VPWR"],
-  "GND_NETS": ["VGND"],
+  "VDD_NETS": ["vccd1"],
+  "GND_NETS": ["vssd1"],
   "SYNTH_USE_PG_PINS_DEFINES": "USE_POWER_PINS",
 
   "FP_PDN_AUTO_ADJUST": 1,
@@ -27,7 +26,8 @@
   "FP_PDN_VWIDTH": 3.1,
   "FP_PDN_HWIDTH": 3.1,
 
-  "FP_TEMPLATE_PINS": ["clk", "reset_n", "boot_ok", "boot_fail", "VPWR", "VGND"],
+  "FP_PDN_MACRO_HOOKS": "top_secureboot vccd1 vssd1 vccd1 vssd1",
+  "FP_TEMPLATE_PINS": ["clk", "reset_n", "boot_ok", "boot_fail", "vccd1", "vssd1"],
 
   "DRT_THREADS": 4,
   "RUN_HEURISTIC_DIODE_INSERTION": 1,
@@ -41,25 +41,27 @@
 
   "RUN_IRDROP_REPORT": 0,
 
+  "VERILOG_INCLUDE_DIRS": [
+  "dir::../../verilog/gl"
+],
+
   "VERILOG_FILES_BLACKBOX": [
-    "dir::../../verilog/gl/user_proj_timer.v",
+    "dir::../../verilog/gl/sky130_sram_2kbyte_1rw1r_32x512_8.v",
     "dir::../../verilog/gl/vccd1_connection.v",
     "dir::../../verilog/gl/vssd1_connection.v"
   ],
 
   "EXTRA_LEFS": [
-    "dir::../../lef/user_proj_timer.lef",
+
     "dir::../../lef/vccd1_connection.lef",
     "dir::../../lef/vssd1_connection.lef"
   ],
 
   "EXTRA_GDS_FILES": [
-    "dir::../../gds/user_proj_timer.gds",
     "dir::../../gds/vccd1_connection.gds",
     "dir::../../gds/vssd1_connection.gds"
   ],
 
-  "EXTRA_LIBS": "dir::../../lib/user_proj_timer.lib",
 
   "MAX_TRANSITION_CONSTRAINT": 0.5,
   "SYNTH_ELABORATE_ONLY": 0,

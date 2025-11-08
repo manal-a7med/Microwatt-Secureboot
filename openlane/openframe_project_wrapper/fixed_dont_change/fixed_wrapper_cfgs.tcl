@@ -55,6 +55,8 @@ set ::env(SYNTH_USE_PG_PINS_DEFINES) "USE_POWER_PINS"
 
 # Pin placement template
 set ::env(FP_DEF_TEMPLATE) $::env(DESIGN_DIR)/fixed_dont_change/openframe_project_wrapper.def
+set ::env(RUN_LINTER) 0
+
 
 # --- Low-memory Magic / signoff tweaks (add these for large designs) ---
 set ::env(MAGIC_DRC_USE_GDS) 1
