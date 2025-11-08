@@ -9,7 +9,7 @@
       //  $readmemh("src/firmware.hex", mem);
       // $readmemh("../../src/firmware.hex", mem);
      //   $readmemh("../../../src/firmware.hex", mem);
-     $readmemh("/home/mana/Microwatt-Hackathon/Microwatt-Secureboot/src/firmware.hex", mem);
+   //  $readmemh("/home/mana/Microwatt-Hackathon/Microwatt-Secureboot/src/firmware.hex", mem);
 //    end
 //`endif
 

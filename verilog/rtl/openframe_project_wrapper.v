@@ -103,24 +103,31 @@ module openframe_project_wrapper (
     input  [`OPENFRAME_IO_PADS-1:0] gpio_loopback_zero
 );
 
-	user_proj_timer mprj (
-`ifdef USE_POWER_PINS
-		.vccd1(vccd1),
-		.vssd1(vssd1),
-`endif
-        .wb_clk_i(gpio_in[0]),
-        .wb_rst_i(gpio_in[1]),
-        .io_in(gpio_in[12:2]),
-        .io_out(gpio_out[12:2]),
-        .io_oeb(gpio_oeb[12:2])
+/*--------------------------------------*/
+/* User project is instantiated  here   */
+/*--------------------------------------*/
 
-	    /* NOTE:  Openframe signals not used in picosoc:	*/
-	    /* porb_h:    3.3V domain signal			*/
-	    /* resetb_h:  3.3V domain signal			*/
-	    /* gpio_in_h: 3.3V domain signals			*/
-	    /* analog_io: analog signals			*/
-	    /* analog_noesd_io: analog signals			*/
-	);
+   CF_SRAM_1024x32_wb_wrapper mprj (
+    // Power connections
+`ifdef USE_POWER_PINS
+    .VPWR(vccd1),      // User area 1 1.8V power
+    .VGND(vssd1),      // User area 1 digital ground
+`endif
+
+    // Wishbone general signals
+    .wb_clk_i(wb_clk_i),
+    .wb_rst_i(wb_rst_i),
+
+    // MGMT SoC Wishbone Slave signals
+    .wbs_cyc_i(wbs_cyc_i),
+    .wbs_stb_i(wbs_stb_i),
+    .wbs_we_i(wbs_we_i),
+    .wbs_sel_i(wbs_sel_i),
+    .wbs_adr_i(wbs_adr_i),
+    .wbs_dat_i(wbs_dat_i),
+    .wbs_ack_o(wbs_ack_o),
+    .wbs_dat_o(wbs_dat_o)
+);
 
 	/* All analog enable/select/polarity and holdover bits	*/
 	/* will not be handled in the picosoc module.  Tie	*/
